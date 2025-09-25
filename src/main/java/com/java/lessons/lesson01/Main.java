@@ -7,7 +7,7 @@ public class Main {
 
     static final int DEFAULT_VALUE = 0;
     static final String DEFAULT_NAME = "John";
-
+// test
     public static void main(String[] args) {
         System.out.println("Hello, World!");
         Math.abs(1);
