@@ -28,7 +28,7 @@ class Quiz {
                 ((MultipleChoiceQuestion) q).showOptions();
             }
 
-            System.out.print("👉 Your answer: ");
+            System.out.print("Your answer: ");
             String ans = sc.nextLine();
 
             if (q.checkAnswer(ans)) {

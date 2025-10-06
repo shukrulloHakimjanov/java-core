@@ -21,6 +21,6 @@ class Student extends Person {
 
     @Override
     public void showInfo() {
-        System.out.println("🎓 Student: " + getName() + " | Attendance: " + attendanceDays + " days | Grades: " + grades);
+        System.out.println("Student: " + getName() + " | Attendance: " + attendanceDays + " days | Grades: " + grades);
     }
 }

@@ -12,6 +12,6 @@ class Teacher extends Person {
 
     @Override
     public void showInfo() {
-        System.out.println("👨‍🏫 Teacher: " + getName() + " | Subject: " + subject);
+        System.out.println("Teacher: " + getName() + " | Subject: " + subject);
     }
 }

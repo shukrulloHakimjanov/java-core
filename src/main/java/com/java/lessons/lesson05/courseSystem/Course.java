@@ -26,9 +26,9 @@ public class Course {
     }
 
     public void showCourseInfo() {
-        System.out.println("\n📘 Course: " + title);
+        System.out.println("\nCourse: " + title);
         teacher.showInfo();
-        System.out.println("👥 Students:");
+        System.out.println("Students:");
         for (Student s : students) {
             s.showInfo();
         }
