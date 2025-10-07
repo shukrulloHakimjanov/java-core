@@ -31,9 +31,9 @@ public class Seat implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Место %d [%s] — %s",
+        return String.format("Seat %d [%s] — %s",
                 seatNumber, seatClass,
-                isBooked ? "ЗАНЯТО" : "СВОБОДНО");
+                isBooked ? "BOOKED" : "AVAILABLE");
     }
 }
 

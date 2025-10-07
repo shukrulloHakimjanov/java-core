@@ -5,7 +5,7 @@ import java.util.*;
 
 public class BookingService {
     private List<Seat> seats;
-    private static final String FILE_PATH = "lesson06/data/seats.ser";
+    private static final String FILE_PATH = "lesson06/seats.txt";
 
     public BookingService() {
         seats = loadSeats();
@@ -33,14 +33,14 @@ public class BookingService {
         try {
             Seat seat = getSeat(seatNumber);
             if (seat.isBooked()) {
-                System.out.println("Это место уже занято!");
+                System.out.println("This seat is already booked!");
                 return;
             }
             seat.book(new Passenger(fullName));
             saveSeats();
-            System.out.println("Место успешно забронировано!");
+            System.out.println("Seat booked successfully!");
         } catch (Exception e) {
-            System.out.println("Ошибка бронирования: " + e.getMessage());
+            System.out.println("Booking error: " + e.getMessage());
         }
     }
 
@@ -48,14 +48,14 @@ public class BookingService {
         try {
             Seat seat = getSeat(seatNumber);
             if (!seat.isBooked()) {
-                System.out.println("Это место не было забронировано.");
+                System.out.println("This seat is not currently booked.");
                 return;
             }
             seat.cancel();
             saveSeats();
-            System.out.println("Бронь снята.");
+            System.out.println("Booking canceled.");
         } catch (Exception e) {
-            System.out.println("Ошибка: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
@@ -64,10 +64,10 @@ public class BookingService {
             Seat seat = getSeat(seatNumber);
             System.out.println(seat);
             if (seat.isBooked()) {
-                System.out.println("Пассажир: " + seat.getPassenger());
+                System.out.println("Passenger: " + seat.getPassenger());
             }
         } catch (Exception e) {
-            System.out.println("Ошибка: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
@@ -75,14 +75,14 @@ public class BookingService {
         return seats.stream()
                 .filter(s -> s.getSeatNumber() == seatNumber)
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Место не найдено!"));
+                .orElseThrow(() -> new RuntimeException("Seat not found!"));
     }
 
     private void saveSeats() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH))) {
             oos.writeObject(seats);
         } catch (IOException e) {
-            System.out.println("Ошибка сохранения данных: " + e.getMessage());
+            System.out.println("Error saving data: " + e.getMessage());
         }
     }
 
@@ -93,15 +93,16 @@ public class BookingService {
             return null;
         }
     }
+
     public void showPlaneLayout() {
-        System.out.println("\n===== ✈️ СХЕМА САМОЛЁТА =====");
+        System.out.println("\n=====  AIRPLANE LAYOUT =====");
 
         for (Seat seat : seats) {
             String color;
             if (seat.isBooked()) {
-                color = "\u001B[31m";
+                color = "\u001B[31m"; // Red
             } else {
-                color = "\u001B[32m";
+                color = "\u001B[32m"; // Green
             }
 
             String classLabel = seat.getSeatClass() == SeatClass.BUSINESS ? "B" : "E";
@@ -110,6 +111,7 @@ public class BookingService {
             if (seat.getSeatNumber() % 4 == 0)
                 System.out.println();
         }
-        System.out.println("\nЛегенда:  свободно, занято, B — бизнес, E — эконом\n");
+
+        System.out.println("\nLegend: green available, red booked, B — Business, E — Economy\n");
     }
 }
