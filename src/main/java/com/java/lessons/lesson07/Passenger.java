@@ -1,4 +1,4 @@
-package com.java.lessons.lesson06;
+package com.java.lessons.lesson07;
 
 import java.io.Serializable;
 
