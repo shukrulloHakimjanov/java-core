@@ -1,4 +1,4 @@
 package com.java.lessons.lesson12;
 
-public class Main {
+public class StreamApiTask {
 }
